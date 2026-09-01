@@ -4,28 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="IT portfolio of Patcharaphon Waisopha" />
-    <meta name="theme-color" content="#071018" />
-    <title>Patcharaphon Waisopha · IT Portfolio</title>
+    <meta name="theme-color" content="#f4f1ea" />
+    <title>พัชรพล ไวโสภา · Portfolio</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Syne:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <div class="bg" aria-hidden="true">
-      <div class="grid"></div>
-      <div class="orb orb-a"></div>
-      <div class="orb orb-b"></div>
-    </div>
-
     <header class="site-header">
       <a class="brand" href="#top">
-        <span class="brand-mark">PW</span>
-        <span id="brand-name">Portfolio</span>
+        <img id="brand-photo" class="brand-photo" alt="" hidden />
+        <span id="brand-name">พัชรพล ไวโสภา</span>
       </a>
       <button
         id="nav-toggle"
@@ -41,8 +35,11 @@
 
     <main id="top">
       <section class="hero">
+        <figure class="portrait">
+          <img id="hero-photo" alt="พัชรพล ไวโสภา" />
+        </figure>
         <div class="hero-copy">
-          <p class="kicker"><span class="pulse"></span><span id="hero-kicker"></span></p>
+          <p class="kicker" id="hero-kicker"></p>
           <h1>
             <span id="hero-name-th"></span>
             <small id="hero-name-en"></small>
@@ -50,28 +47,11 @@
           <p class="role" id="hero-role"></p>
           <p class="headline" id="hero-headline"></p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#internships">ดูฝึกงาน</a>
-            <a class="btn btn-ghost" href="#courses">ดูรายวิชา</a>
+            <a class="btn btn-primary" href="#internships">ฝึกงาน</a>
+            <a class="btn btn-ghost" href="#contact">ติดต่อ</a>
           </div>
           <div id="hero-socials"></div>
           <p class="location" id="hero-location"></p>
-        </div>
-        <div class="hero-visual">
-          <div class="terminal">
-            <div class="terminal-bar">
-              <span></span><span></span><span></span>
-              <code>portfolio.sh</code>
-            </div>
-            <pre><span class="cmt"># current stack</span>
-<span class="cmd">whoami</span>
-<span class="out">it-specialist / software / infra / ai</span>
-<span class="cmd">ls ./stack</span>
-<span class="out">front-end  back-end  database
-network   mobile    devops</span>
-<span class="cmd">status</span>
-<span class="out ok">ready to ship · learning in public</span></pre>
-          </div>
-          <div id="hero-stack" class="hero-stack"></div>
         </div>
       </section>
 
@@ -79,7 +59,7 @@ network   mobile    devops</span>
 
       <section id="about" class="section">
         <div class="section-head">
-          <p class="kicker" id="about-kicker">About</p>
+          <p class="kicker" id="about-kicker">เกี่ยวกับ</p>
           <h2 id="about-title"></h2>
         </div>
         <div id="about-body" class="prose"></div>
@@ -87,17 +67,16 @@ network   mobile    devops</span>
 
       <section id="internships" class="section">
         <div class="section-head">
-          <p class="kicker">Internships</p>
-          <h2>การฝึกงาน และเว็บไซต์ที่ทำระหว่างฝึก</h2>
-          <p class="lede">คลิกเปิดเว็บจริงได้เลย ทั้งระบบ InternPro ของ ปวส.1 และเว็บบันทึกของ ปวช.3</p>
+          <p class="kicker">ฝึกงาน</p>
+          <h2>สถานที่ฝึกงานและเว็บที่จัดทำ</h2>
         </div>
         <div id="intern-grid" class="intern-grid"></div>
       </section>
 
       <section id="skills" class="section">
         <div class="section-head">
-          <p class="kicker">Skills</p>
-          <h2>ชุดทักษะที่ต่อยอดจากรายวิชาเรียนและเกียรติบัตร</h2>
+          <p class="kicker">ทักษะ</p>
+          <h2>ความสามารถหลัก</h2>
         </div>
         <div id="skills-grid" class="skills-grid"></div>
       </section>
@@ -105,9 +84,8 @@ network   mobile    devops</span>
       <section id="courses" class="section">
         <div class="section-head split">
           <div>
-            <p class="kicker">Courses</p>
-            <h2>รายวิชาเรียน และสิ่งที่ได้เมื่อเรียนจบ</h2>
-            <p class="lede">แต่ละวิชามีสรุปว่าเอาไปใช้ทำอะไรได้บ้าง เพิ่มรายวิชาใหม่ได้ที่ <code>js/content.js</code></p>
+            <p class="kicker">รายวิชา</p>
+            <h2>วิชาเรียน และสิ่งที่ได้เมื่อเรียนจบ</h2>
           </div>
           <div id="course-filters" class="chips"></div>
         </div>
@@ -117,8 +95,8 @@ network   mobile    devops</span>
       <section id="certificates" class="section">
         <div class="section-head split">
           <div>
-            <p class="kicker">Certificates</p>
-            <h2>เกียรติบัตรจาก TDGA / DGA</h2>
+            <p class="kicker">เกียรติบัตร</p>
+            <h2>เกียรติบัตร TDGA / DGA</h2>
           </div>
           <div id="cert-filters" class="chips"></div>
         </div>
@@ -127,15 +105,14 @@ network   mobile    devops</span>
 
       <section id="projects" class="section">
         <div class="section-head">
-          <p class="kicker">Selected work</p>
-          <h2>ผลงานที่อยากโชว์</h2>
-          <p class="lede">เพิ่มโปรเจกต์ใหม่ได้ที่ <code>js/content.js</code> แล้ววางรูปใน <code>assets/projects/</code></p>
+          <p class="kicker">ผลงาน</p>
+          <h2>ผลงานที่เลือกมาโชว์</h2>
         </div>
         <div id="project-grid" class="project-grid"></div>
       </section>
 
       <section id="contact" class="section contact">
-        <p class="kicker">Contact</p>
+        <p class="kicker">ติดต่อ</p>
         <h2 id="contact-title"></h2>
         <p id="contact-note" class="lede"></p>
         <div id="contact-cards" class="contact-cards"></div>
@@ -144,7 +121,7 @@ network   mobile    devops</span>
     </main>
 
     <footer class="site-footer">
-      <p>© <span id="year"></span> <span id="footer-name"></span> · Built for GitHub Pages</p>
+      <p>© <span id="year"></span> <span id="footer-name"></span></p>
     </footer>
 
     <div id="lightbox" class="lightbox" hidden>

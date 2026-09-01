@@ -22,14 +22,15 @@ window.SITE = {
   profile: {
     nameTh: "พัชรพล ไวโสภา",
     nameEn: "Patcharaphon Waisopha",
-    role: "IT · Software · Infrastructure · AI",
-    headline: "เรียนสายเทคโนโลยีสารสนเทศแบบครบวงจร ทั้งพัฒนาซอฟต์แวร์ ข้อมูล เครือข่าย และทักษะวิชาชีพ พร้อมเกียรติบัตรดิจิทัลจาก TDGA/DGA",
-    location: "Thailand",
-    availability: "Open to IT opportunities",
+    role: "นักศึกษาเทคโนโลยีสารสนเทศ",
+    headline: "วิทยาลัยเทคนิคเลย · สาย IT ที่เรียนครบทั้งซอฟต์แวร์ ระบบ ข้อมูล และทักษะวิชาชีพ",
+    location: "เลย, ประเทศไทย",
+    availability: "พร้อมรับงานและโอกาสด้านไอที",
     email: "film145.film@gmail.com",
     line: "0986426895",
     phone: "0830312766",
-    github: "https://github.com/68319010027-hue",
+    github: "https://github.com/film145film-bit",
+    photo: "assets/profile.jpg",
     linkedin: "",
     resume: "",
   },
@@ -484,7 +485,7 @@ window.SITE = {
       image: "",
       links: {
         live: "#",
-        github: "https://github.com/68319010027-hue",
+        github: "https://github.com/film145film-bit/portfolio",
       },
     },
     /*
@@ -503,7 +504,7 @@ window.SITE = {
   ],
 
   contact: {
-    title: "พร้อมคุยเรื่องงาน IT, ดิจิทัล และการเรียนรู้ต่อเนื่อง",
+    title: "พร้อมให้ติดต่อเรื่องงานไอทีและการฝึกงาน",
     note: "ติดต่อได้ทางอีเมล LINE หรือโทรศัพท์",
   },
 };

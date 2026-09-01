@@ -2,9 +2,9 @@
 
 เว็บออนไลน์สำหรับแชร์ให้เครื่องอื่นเปิดได้:
 
-**https://68319010027-hue.github.io/it-portfolio/**
+**https://film145film-bit.github.io/portfolio/**
 
-โค้ดอยู่ที่ https://github.com/68319010027-hue/it-portfolio
+โค้ดอยู่ที่ https://github.com/film145film-bit/portfolio
 
 เว็บไซต์พอร์ตโฟลิโอสาย IT โชว์เกียรติบัตร TDGA/DGA การฝึกงาน และผลงาน โดยแก้ไฟล์เดียวก็อัปเดตเนื้อหาได้
 

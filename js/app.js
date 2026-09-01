@@ -11,7 +11,19 @@
   const metaDesc = document.querySelector('meta[name="description"]');
   if (metaDesc) metaDesc.setAttribute("content", profile.headline);
 
-  $("#brand-name").textContent = profile.nameEn.split(" ")[0];
+  $("#brand-name").textContent = profile.nameTh;
+  const photo = profile.photo || "assets/profile.jpg";
+  const heroPhoto = $("#hero-photo");
+  const brandPhoto = $("#brand-photo");
+  if (heroPhoto) {
+    heroPhoto.src = photo;
+    heroPhoto.alt = profile.nameTh;
+  }
+  if (brandPhoto) {
+    brandPhoto.src = photo;
+    brandPhoto.alt = "";
+    brandPhoto.hidden = false;
+  }
   $("#hero-kicker").textContent = profile.availability;
   $("#hero-name-th").textContent = profile.nameTh;
   $("#hero-name-en").textContent = profile.nameEn;
@@ -206,15 +218,6 @@
     renderFilters();
     renderCertificates();
   });
-
-  const stack = certificates.slice(0, 3);
-  $("#hero-stack").innerHTML = stack
-    .map(
-      (c, i) => `<figure class="stack-card" style="--i:${i}">
-        <img src="${c.image}" alt="${c.title}">
-      </figure>`
-    )
-    .join("");
 
   const internLink = (href, label) => {
     if (!href) return "";
