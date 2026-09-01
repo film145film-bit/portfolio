@@ -348,10 +348,16 @@ window.SITE = {
     },
   ],
 
+  certificateIssuers: [
+    { src: "assets/orgs/dga.png", alt: "DGA" },
+    { src: "assets/orgs/tdga.png", alt: "TDGA" },
+  ],
+
   internships: [
     {
       level: "ปวส.1",
       org: "สำนักงานสาธารณสุขจังหวัดเลย",
+      logo: "assets/orgs/ssj-loei.png",
       icon: "building",
       tone: "green",
       role: "นักศึกษาฝึกงานแผนก IT · วิทยาลัยเทคนิคเลย",
@@ -368,6 +374,8 @@ window.SITE = {
     {
       level: "ปวช.3",
       org: "โรงพยาบาลเลย",
+      logo: "assets/orgs/loei-hospital.png",
+      logoDark: true,
       icon: "hospital",
       tone: "blue",
       role: "นักศึกษาฝึกงาน · วิทยาลัยเทคนิคเลย",

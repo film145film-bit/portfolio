@@ -4,7 +4,7 @@
   const SITE = window.SITE;
   if (!SITE) return;
 
-  const { profile, nav, stats, skills, internships = [], certificates, contact } = SITE;
+  const { profile, nav, stats, skills, internships = [], certificates, certificateIssuers = [], contact } = SITE;
 
   const svg = (d) =>
     `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
@@ -97,13 +97,9 @@
 
   $("#skills-grid").innerHTML = skills
     .map(
-      (group) => `<article class="dash-card tone-${group.tone || "green"}">
-        <div class="dash-icon">${icon(group.icon)}</div>
-        <div>
-          <span class="dash-label">ทักษะ</span>
-          <strong class="dash-value small">${group.group}</strong>
-          <ul class="chip-list">${group.items.map((item) => `<li>${item}</li>`).join("")}</ul>
-        </div>
+      (group) => `<article class="skill-group tone-${group.tone || "green"}">
+        <h3>${icon(group.icon)} ${group.group}</h3>
+        <ul class="chip-list">${group.items.map((item) => `<li>${item}</li>`).join("")}</ul>
       </article>`
     )
     .join("");
@@ -116,28 +112,41 @@
       const gh = item.links?.github
         ? `<a href="${item.links.github}" target="_blank" rel="noreferrer">${icon("github")} GitHub</a>`
         : "";
-      return `<article class="dash-card tone-${item.tone || "green"}">
-        <div class="dash-icon">${icon(item.icon || "briefcase")}</div>
-        <div>
-          <span class="dash-label">${item.level}${item.year && item.year !== item.level ? ` · ${item.year}` : ""}</span>
-          <strong class="dash-value small">${item.org}</strong>
-          <span class="dash-hint">${item.site || item.summary}</span>
-          <div class="project-links">${live}${gh}</div>
+      const tags = (item.tags || []).map((t) => `<li>${t}</li>`).join("");
+      const logo = item.logo
+        ? `<img class="place-logo${item.logoDark ? " dark" : ""}" src="${item.logo}" alt="${item.org}">`
+        : `<div class="place-logo fallback">${icon(item.icon || "briefcase")}</div>`;
+      return `<article class="place-card tone-${item.tone || "green"}">
+        <div class="place-brand">
+          ${logo}
+          <div>
+            <span class="place-level">${item.level}${item.year && item.year !== item.level ? ` · ${item.year}` : ""}</span>
+            <h3>${item.org}</h3>
+            <p class="place-role">${item.role}</p>
+          </div>
         </div>
+        <p class="place-summary">${item.summary}</p>
+        ${tags ? `<ul class="tags">${tags}</ul>` : ""}
+        <div class="project-links">${live}${gh}</div>
       </article>`;
     })
     .join("");
 
-  const tones = ["green", "blue", "purple", "orange"];
+  const issuerMarks = certificateIssuers
+    .map((logo) => `<img src="${logo.src}" alt="${logo.alt}">`)
+    .join("");
   $("#cert-grid").innerHTML = certificates
     .map(
-      (c, i) => `<button class="cert-card dash-card tone-${tones[i % tones.length]}" data-id="${c.id}" type="button">
-        <div class="dash-icon">${icon("award")}</div>
-        <div class="cert-copy">
-          <span class="dash-label">${c.category} · ${c.issuer}</span>
-          <strong class="dash-value small">${c.title}</strong>
-          <span class="dash-hint">${c.date}</span>
-        </div>
+      (c) => `<button class="cert-tile" data-id="${c.id}" type="button">
+        <span class="cert-preview">
+          <img src="${c.image}" alt="">
+          <span class="cert-issuers">${issuerMarks}</span>
+        </span>
+        <span class="cert-copy">
+          <span class="dash-label">${c.category} · ${c.hours || c.date}</span>
+          <strong>${c.title}</strong>
+          <span class="dash-hint">${c.date} · กดเพื่อดูใบเต็ม</span>
+        </span>
       </button>`
     )
     .join("");
