@@ -1,4 +1,5 @@
 _cert_extract/
+_tmp/
 .DS_Store
 Thumbs.db
 *.log

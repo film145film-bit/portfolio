@@ -26,12 +26,30 @@
 }
 ```
 
+### เพิ่มรายวิชา / ความสามารถ
+
+คัดลอก object ในอาร์เรย์ `courses` แล้วแก้ค่า
+
+```js
+{
+  title: "ชื่อวิชา",
+  titleEn: "English title",
+  category: "ซอฟต์แวร์", // ซอฟต์แวร์, ข้อมูลและ AI, ระบบและฮาร์ดแวร์, วิชาชีพ, ปฏิบัติจริง
+  outcome: "เมื่อเรียนจบแล้วจะทำอะไรได้",
+  gains: ["ทักษะ 1", "ทักษะ 2"],
+}
+```
+
+### เพิ่มการฝึกงาน
+
+คัดลอก object ในอาร์เรย์ `internships` แล้วแก้ค่า รวมถึงลิงก์เว็บ `links.live`
+
 ### เพิ่มโปรเจกต์
 
 1. (ถ้ามีรูป) วางใน `assets/projects/`
 2. คัดลอก object ในอาร์เรย์ `projects` แล้วแก้ค่า
 
-อย่าลืมใส่ลิงก์ติดต่อใน `profile.email`, `profile.github`, `profile.linkedin`
+อย่าลืมใส่ช่องทางติดต่อใน `profile.email`, `profile.line`, `profile.phone`, `profile.github`
 
 ## อัปขึ้น GitHub Pages ให้คนเปิดดูได้
 

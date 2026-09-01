@@ -5,7 +5,7 @@
   const SITE = window.SITE;
   if (!SITE) return;
 
-  const { profile, nav, about, stats, skills, certificates, projects, contact } = SITE;
+  const { profile, nav, about, stats, skills, courses = [], internships = [], certificates, projects, contact } = SITE;
 
   document.title = `${profile.nameEn} · ${profile.role}`;
   const metaDesc = document.querySelector('meta[name="description"]');
@@ -26,25 +26,68 @@
     .map((item) => `<a href="${item.href}">${item.label}</a>`)
     .join("");
 
-  const socials = [
-    profile.email && { href: `mailto:${profile.email}`, label: "Email" },
-    profile.github && { href: profile.github, label: "GitHub" },
-    profile.linkedin && { href: profile.linkedin, label: "LinkedIn" },
-    profile.resume && { href: profile.resume, label: "Resume" },
+  const formatPhone = (num) => {
+    const digits = String(num || "").replace(/\D/g, "");
+    if (digits.length === 10) return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
+    return num;
+  };
+
+  const channels = [
+    profile.email && {
+      href: `mailto:${profile.email}`,
+      kind: "Email",
+      value: profile.email,
+      label: "Email",
+    },
+    profile.line && {
+      href: `https://line.me/ti/p/~${encodeURIComponent(profile.line)}`,
+      kind: "LINE ID",
+      value: profile.line,
+      label: "LINE",
+    },
+    profile.phone && {
+      href: `tel:${String(profile.phone).replace(/\D/g, "")}`,
+      kind: "โทรศัพท์",
+      value: formatPhone(profile.phone),
+      label: "โทร",
+    },
+    profile.github && {
+      href: profile.github,
+      kind: "GitHub",
+      value: profile.github.replace(/^https?:\/\/(www\.)?github\.com\//, ""),
+      label: "GitHub",
+    },
+    profile.linkedin && {
+      href: profile.linkedin,
+      kind: "LinkedIn",
+      value: "LinkedIn",
+      label: "LinkedIn",
+    },
   ].filter(Boolean);
+
+  const socials = channels.map((c) => ({ href: c.href, label: c.label }));
 
   const socialHtml = (className = "socials") =>
     socials.length
       ? `<div class="${className}">${socials
-          .map(
-            (s) =>
-              `<a href="${s.href}" target="${s.href.startsWith("mailto:") ? "_self" : "_blank"}" rel="noreferrer">${s.label}</a>`
-          )
+          .map((s) => {
+            const external = !s.href.startsWith("mailto:") && !s.href.startsWith("tel:");
+            return `<a href="${s.href}" target="${external ? "_blank" : "_self"}" rel="noreferrer">${s.label}</a>`;
+          })
           .join("")}</div>`
       : "";
 
   $("#hero-socials").innerHTML = socialHtml();
-  $("#contact-socials").innerHTML = socialHtml("socials socials-lg");
+  $("#contact-socials").innerHTML = "";
+  $("#contact-cards").innerHTML = channels
+    .map((c) => {
+      const external = !c.href.startsWith("mailto:") && !c.href.startsWith("tel:");
+      return `<a class="contact-card" href="${c.href}" target="${external ? "_blank" : "_self"}" rel="noreferrer">
+        <span>${c.kind}</span>
+        <strong>${c.value}</strong>
+      </a>`;
+    })
+    .join("");
 
   $("#stats").innerHTML = stats
     .map(
@@ -67,6 +110,51 @@
       </article>`
     )
     .join("");
+
+  const courseCategories = ["ทั้งหมด", ...new Set(courses.map((c) => c.category))];
+  let activeCourseCategory = "ทั้งหมด";
+
+  const renderCourseFilters = () => {
+    $("#course-filters").innerHTML = courseCategories
+      .map(
+        (cat) =>
+          `<button class="chip ${cat === activeCourseCategory ? "is-active" : ""}" data-course-cat="${cat}" type="button">${cat}</button>`
+      )
+      .join("");
+  };
+
+  const renderCourses = () => {
+    const list =
+      activeCourseCategory === "ทั้งหมด"
+        ? courses
+        : courses.filter((c) => c.category === activeCourseCategory);
+
+    $("#course-grid").innerHTML = list
+      .map(
+        (c, i) => `<article class="course-card reveal" style="--d:${i * 40}ms">
+          <span class="course-cat">${c.category}</span>
+          <h3>${c.title}</h3>
+          <p class="course-en">${c.titleEn}</p>
+          <p class="course-gain-label">เมื่อเรียนจบจะได้</p>
+          <p class="course-outcome">${c.outcome}</p>
+          <ul class="tags">${(c.gains || []).map((g) => `<li>${g}</li>`).join("")}</ul>
+        </article>`
+      )
+      .join("");
+
+    observeReveals();
+  };
+
+  renderCourseFilters();
+  renderCourses();
+
+  $("#course-filters").addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-course-cat]");
+    if (!btn) return;
+    activeCourseCategory = btn.dataset.courseCat;
+    renderCourseFilters();
+    renderCourses();
+  });
 
   const categories = ["ทั้งหมด", ...new Set(certificates.map((c) => c.category))];
   let activeCategory = "ทั้งหมด";
@@ -126,6 +214,35 @@
         <img src="${c.image}" alt="${c.title}">
       </figure>`
     )
+    .join("");
+
+  const internLink = (href, label) => {
+    if (!href) return "";
+    const external = href !== "#";
+    return `<a href="${href}" ${external ? 'target="_blank" rel="noreferrer"' : ""}>${label}</a>`;
+  };
+
+  $("#intern-grid").innerHTML = internships
+    .map((item) => {
+      const media = item.image
+        ? `<img src="${item.image}" alt="${item.org}">`
+        : `<div class="project-fallback"><span>/${item.level}</span></div>`;
+      return `<article class="intern-card reveal">
+        <div class="project-media">${media}</div>
+        <div class="project-body">
+          <div class="intern-badges">
+            <span class="course-cat">${item.level}</span>
+            <span class="intern-year">${item.year}</span>
+          </div>
+          <h3>${item.org}</h3>
+          <p class="course-en">${item.role}</p>
+          <p class="intern-site">${item.site}</p>
+          <p>${item.summary}</p>
+          <ul class="tags">${(item.tags || []).map((t) => `<li>${t}</li>`).join("")}</ul>
+          <div class="project-links">${internLink(item.links?.live, "เปิดเว็บฝึกงาน")}${internLink(item.links?.github, "GitHub")}</div>
+        </div>
+      </article>`;
+    })
     .join("");
 
   const renderProjects = () => {

@@ -50,8 +50,8 @@
           <p class="role" id="hero-role"></p>
           <p class="headline" id="hero-headline"></p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#certificates">ดูเกียรติบัตร</a>
-            <a class="btn btn-ghost" href="#projects">ดูผลงาน</a>
+            <a class="btn btn-primary" href="#internships">ดูฝึกงาน</a>
+            <a class="btn btn-ghost" href="#courses">ดูรายวิชา</a>
           </div>
           <div id="hero-socials"></div>
           <p class="location" id="hero-location"></p>
@@ -64,12 +64,10 @@
             </div>
             <pre><span class="cmt"># current stack</span>
 <span class="cmd">whoami</span>
-<span class="out">it-specialist / digital-gov / ai</span>
-<span class="cmd">ls ./credentials</span>
-<span class="out">prompt-engineering
-ai-governance
-pdpa
-digital-literacy</span>
+<span class="out">it-specialist / software / infra / ai</span>
+<span class="cmd">ls ./stack</span>
+<span class="out">front-end  back-end  database
+network   mobile    devops</span>
 <span class="cmd">status</span>
 <span class="out ok">ready to ship · learning in public</span></pre>
           </div>
@@ -87,12 +85,33 @@ digital-literacy</span>
         <div id="about-body" class="prose"></div>
       </section>
 
+      <section id="internships" class="section">
+        <div class="section-head">
+          <p class="kicker">Internships</p>
+          <h2>การฝึกงาน และเว็บไซต์ที่ทำระหว่างฝึก</h2>
+          <p class="lede">คลิกเปิดเว็บจริงได้เลย ทั้งระบบ InternPro ของ ปวส.1 และเว็บบันทึกของ ปวช.3</p>
+        </div>
+        <div id="intern-grid" class="intern-grid"></div>
+      </section>
+
       <section id="skills" class="section">
         <div class="section-head">
           <p class="kicker">Skills</p>
-          <h2>ชุดทักษะที่ต่อยอดจากเกียรติบัตรและการเรียนรู้ต่อเนื่อง</h2>
+          <h2>ชุดทักษะที่ต่อยอดจากรายวิชาเรียนและเกียรติบัตร</h2>
         </div>
         <div id="skills-grid" class="skills-grid"></div>
+      </section>
+
+      <section id="courses" class="section">
+        <div class="section-head split">
+          <div>
+            <p class="kicker">Courses</p>
+            <h2>รายวิชาเรียน และสิ่งที่ได้เมื่อเรียนจบ</h2>
+            <p class="lede">แต่ละวิชามีสรุปว่าเอาไปใช้ทำอะไรได้บ้าง เพิ่มรายวิชาใหม่ได้ที่ <code>js/content.js</code></p>
+          </div>
+          <div id="course-filters" class="chips"></div>
+        </div>
+        <div id="course-grid" class="course-grid"></div>
       </section>
 
       <section id="certificates" class="section">
@@ -119,6 +138,7 @@ digital-literacy</span>
         <p class="kicker">Contact</p>
         <h2 id="contact-title"></h2>
         <p id="contact-note" class="lede"></p>
+        <div id="contact-cards" class="contact-cards"></div>
         <div id="contact-socials"></div>
       </section>
     </main>
