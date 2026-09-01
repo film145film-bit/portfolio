@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="IT portfolio of Patcharaphon Waisopha" />
+    <meta name="theme-color" content="#071018" />
+    <title>Patcharaphon Waisopha · IT Portfolio</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="bg" aria-hidden="true">
+      <div class="grid"></div>
+      <div class="orb orb-a"></div>
+      <div class="orb orb-b"></div>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#top">
+        <span class="brand-mark">PW</span>
+        <span id="brand-name">Portfolio</span>
+      </a>
+      <button
+        id="nav-toggle"
+        class="nav-toggle"
+        type="button"
+        aria-label="เปิดเมนู"
+        aria-expanded="false"
+      >
+        <span></span><span></span>
+      </button>
+      <nav id="nav-links" class="nav-links"></nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="kicker"><span class="pulse"></span><span id="hero-kicker"></span></p>
+          <h1>
+            <span id="hero-name-th"></span>
+            <small id="hero-name-en"></small>
+          </h1>
+          <p class="role" id="hero-role"></p>
+          <p class="headline" id="hero-headline"></p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#certificates">ดูเกียรติบัตร</a>
+            <a class="btn btn-ghost" href="#projects">ดูผลงาน</a>
+          </div>
+          <div id="hero-socials"></div>
+          <p class="location" id="hero-location"></p>
+        </div>
+        <div class="hero-visual">
+          <div class="terminal">
+            <div class="terminal-bar">
+              <span></span><span></span><span></span>
+              <code>portfolio.sh</code>
+            </div>
+            <pre><span class="cmt"># current stack</span>
+<span class="cmd">whoami</span>
+<span class="out">it-specialist / digital-gov / ai</span>
+<span class="cmd">ls ./credentials</span>
+<span class="out">prompt-engineering
+ai-governance
+pdpa
+digital-literacy</span>
+<span class="cmd">status</span>
+<span class="out ok">ready to ship · learning in public</span></pre>
+          </div>
+          <div id="hero-stack" class="hero-stack"></div>
+        </div>
+      </section>
+
+      <section id="stats" class="stats"></section>
+
+      <section id="about" class="section">
+        <div class="section-head">
+          <p class="kicker" id="about-kicker">About</p>
+          <h2 id="about-title"></h2>
+        </div>
+        <div id="about-body" class="prose"></div>
+      </section>
+
+      <section id="skills" class="section">
+        <div class="section-head">
+          <p class="kicker">Skills</p>
+          <h2>ชุดทักษะที่ต่อยอดจากเกียรติบัตรและการเรียนรู้ต่อเนื่อง</h2>
+        </div>
+        <div id="skills-grid" class="skills-grid"></div>
+      </section>
+
+      <section id="certificates" class="section">
+        <div class="section-head split">
+          <div>
+            <p class="kicker">Certificates</p>
+            <h2>เกียรติบัตรจาก TDGA / DGA</h2>
+          </div>
+          <div id="cert-filters" class="chips"></div>
+        </div>
+        <div id="cert-grid" class="cert-grid"></div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="section-head">
+          <p class="kicker">Selected work</p>
+          <h2>ผลงานที่อยากโชว์</h2>
+          <p class="lede">เพิ่มโปรเจกต์ใหม่ได้ที่ <code>js/content.js</code> แล้ววางรูปใน <code>assets/projects/</code></p>
+        </div>
+        <div id="project-grid" class="project-grid"></div>
+      </section>
+
+      <section id="contact" class="section contact">
+        <p class="kicker">Contact</p>
+        <h2 id="contact-title"></h2>
+        <p id="contact-note" class="lede"></p>
+        <div id="contact-socials"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year"></span> <span id="footer-name"></span> · Built for GitHub Pages</p>
+    </footer>
+
+    <div id="lightbox" class="lightbox" hidden>
+      <button id="lb-close" class="lb-close" type="button" aria-label="ปิด">×</button>
+      <button id="lb-prev" class="lb-nav prev" type="button" aria-label="ใบก่อนหน้า">‹</button>
+      <figure>
+        <img id="lb-image" alt="" />
+        <figcaption>
+          <strong id="lb-title"></strong>
+          <span id="lb-meta"></span>
+          <a id="lb-pdf" href="#" target="_blank" rel="noreferrer">ดาวน์โหลด PDF</a>
+        </figcaption>
+      </figure>
+      <button id="lb-next" class="lb-nav next" type="button" aria-label="ใบถัดไป">›</button>
+    </div>
+
+    <script src="js/content.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
