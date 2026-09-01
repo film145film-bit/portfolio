@@ -21,7 +21,7 @@
 window.SITE = {
   profile: {
     nameTh: "พัชรพล ไวโสภา",
-    nameEn: "Patcharaphon Waisopha",
+    nameEn: "Patcharapon Waisopa",
     role: "นักศึกษาเทคโนโลยีสารสนเทศ",
     headline: "วิทยาลัยเทคนิคเลย · สาย IT ที่เรียนครบทั้งซอฟต์แวร์ ระบบ ข้อมูล และทักษะวิชาชีพ",
     location: "เลย, ประเทศไทย",
