@@ -58,42 +58,52 @@
   };
 
   const channels = [
-    profile.email && { href: `mailto:${profile.email}`, kind: "Email", value: profile.email, icon: "mail" },
-    profile.line && { href: `https://line.me/ti/p/~${encodeURIComponent(profile.line)}`, kind: "LINE", value: profile.line, icon: "chat" },
-    profile.phone && { href: `tel:${String(profile.phone).replace(/\D/g, "")}`, kind: "โทร", value: formatPhone(profile.phone), icon: "phone" },
-    profile.github && { href: profile.github, kind: "GitHub", value: "film145film-bit", icon: "github" },
+    { href: `mailto:${profile.email}`, kind: "Email", value: profile.email, icon: "mail", tone: "green" },
+    profile.line && { href: `https://line.me/ti/p/~${encodeURIComponent(profile.line)}`, kind: "LINE", value: profile.line, icon: "chat", tone: "blue" },
+    profile.phone && { href: `tel:${String(profile.phone).replace(/\D/g, "")}`, kind: "โทร", value: formatPhone(profile.phone), icon: "phone", tone: "purple" },
+    profile.github && { href: profile.github, kind: "GitHub", value: "film145film-bit", icon: "github", tone: "orange" },
   ].filter(Boolean);
 
   const isExternal = (href) => !href.startsWith("mailto:") && !href.startsWith("tel:");
 
   $("#hero-socials").innerHTML = channels
-    .map((c) => `<a class="icon-btn" href="${c.href}" ${isExternal(c.href) ? 'target="_blank" rel="noreferrer"' : ""}>${icon(c.icon)} ${c.kind}</a>`)
+    .map((c) => `<a class="icon-btn tone-${c.tone}" href="${c.href}" ${isExternal(c.href) ? 'target="_blank" rel="noreferrer"' : ""}>${icon(c.icon)} ${c.kind}</a>`)
     .join("");
 
   $("#contact-cards").innerHTML = channels
     .map(
-      (c) => `<a class="contact-card" href="${c.href}" ${isExternal(c.href) ? 'target="_blank" rel="noreferrer"' : ""}>
-        <span>${icon(c.icon)} ${c.kind}</span>
-        <strong>${c.value}</strong>
+      (c) => `<a class="dash-card tone-${c.tone}" href="${c.href}" ${isExternal(c.href) ? 'target="_blank" rel="noreferrer"' : ""}>
+        <div class="dash-icon">${icon(c.icon)}</div>
+        <div>
+          <span class="dash-label">${c.kind}</span>
+          <strong class="dash-value small">${c.value}</strong>
+        </div>
       </a>`
     )
     .join("");
 
   $("#stats").innerHTML = stats
     .map(
-      (s) => `<article class="stat">
-        ${icon(s.icon)}
-        <strong>${s.value}</strong>
-        <span>${s.label}</span>
+      (s) => `<article class="dash-card tone-${s.tone || "green"}">
+        <div class="dash-icon">${icon(s.icon)}</div>
+        <div>
+          <span class="dash-label">${s.label}</span>
+          <strong class="dash-value">${s.value}</strong>
+          <span class="dash-hint">${s.hint || ""}</span>
+        </div>
       </article>`
     )
     .join("");
 
   $("#skills-grid").innerHTML = skills
     .map(
-      (group) => `<article class="skill-card">
-        <h3>${icon(group.icon)} ${group.group}</h3>
-        <ul>${group.items.map((item) => `<li>${item}</li>`).join("")}</ul>
+      (group) => `<article class="dash-card tone-${group.tone || "green"}">
+        <div class="dash-icon">${icon(group.icon)}</div>
+        <div>
+          <span class="dash-label">ทักษะ</span>
+          <strong class="dash-value small">${group.group}</strong>
+          <ul class="chip-list">${group.items.map((item) => `<li>${item}</li>`).join("")}</ul>
+        </div>
       </article>`
     )
     .join("");
@@ -106,32 +116,28 @@
       const gh = item.links?.github
         ? `<a href="${item.links.github}" target="_blank" rel="noreferrer">${icon("github")} GitHub</a>`
         : "";
-      return `<article class="intern-card">
-        <div class="intern-icon">${icon(item.icon || "briefcase")}</div>
+      return `<article class="dash-card tone-${item.tone || "green"}">
+        <div class="dash-icon">${icon(item.icon || "briefcase")}</div>
         <div>
-          <div class="intern-badges">
-            <span class="course-cat">${item.level}</span>
-            <span class="intern-year">${item.year}</span>
-          </div>
-          <h3>${item.org}</h3>
-          <p class="course-en">${item.role}</p>
-          <p>${item.summary}</p>
+          <span class="dash-label">${item.level}${item.year && item.year !== item.level ? ` · ${item.year}` : ""}</span>
+          <strong class="dash-value small">${item.org}</strong>
+          <span class="dash-hint">${item.site || item.summary}</span>
           <div class="project-links">${live}${gh}</div>
         </div>
       </article>`;
     })
     .join("");
 
+  const tones = ["green", "blue", "purple", "orange"];
   $("#cert-grid").innerHTML = certificates
     .map(
-      (c) => `<button class="cert-card" data-id="${c.id}" type="button">
-        <span class="cert-frame">
-          <img src="${c.image}" alt="${c.title}" loading="lazy">
-        </span>
-        <span class="cert-meta">
-          <span class="cert-cat">${icon("award")} ${c.category}</span>
-          <strong>${c.title}</strong>
-        </span>
+      (c, i) => `<button class="cert-card dash-card tone-${tones[i % tones.length]}" data-id="${c.id}" type="button">
+        <div class="dash-icon">${icon("award")}</div>
+        <div class="cert-copy">
+          <span class="dash-label">${c.category} · ${c.issuer}</span>
+          <strong class="dash-value small">${c.title}</strong>
+          <span class="dash-hint">${c.date}</span>
+        </div>
       </button>`
     )
     .join("");

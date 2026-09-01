@@ -53,31 +53,35 @@ window.SITE = {
   },
 
   stats: [
-    { value: "2", label: "แห่งฝึกงาน", icon: "briefcase" },
-    { value: "6", label: "เกียรติบัตร", icon: "award" },
-    { value: "4", label: "กลุ่มทักษะ", icon: "code" },
-    { value: "IT", label: "สายงาน", icon: "cpu" },
+    { value: "2", label: "ฝึกงาน", hint: "โรงพยาบาลเลย และ สสจ.เลย", icon: "briefcase", tone: "green" },
+    { value: "6", label: "เกียรติบัตร", hint: "TDGA / DGA", icon: "award", tone: "blue" },
+    { value: "4", label: "กลุ่มทักษะ", hint: "ซอฟต์แวร์ · ข้อมูล · ระบบ · วิชาชีพ", icon: "code", tone: "purple" },
+    { value: "IT", label: "สายงาน", hint: "วิทยาลัยเทคนิคเลย", icon: "cpu", tone: "orange" },
   ],
 
   skills: [
     {
       group: "ซอฟต์แวร์",
       icon: "code",
+      tone: "green",
       items: ["Front-End", "Back-End", "OOP", "Mobile", "DevOps"],
     },
     {
       group: "ข้อมูลและ AI",
       icon: "spark",
+      tone: "blue",
       items: ["SQL", "Big Data", "วิเคราะห์ข้อมูล", "Prompt Engineering"],
     },
     {
       group: "ระบบ",
       icon: "server",
+      tone: "purple",
       items: ["เครือข่าย", "เซิร์ฟเวอร์", "IoT", "IT Support"],
     },
     {
       group: "วิชาชีพ",
       icon: "shield",
+      tone: "orange",
       items: ["PDPA", "กฎหมายไอที", "ภาษาอังกฤษ", "Helpdesk"],
     },
   ],
@@ -349,6 +353,7 @@ window.SITE = {
       level: "ปวส.1",
       org: "สำนักงานสาธารณสุขจังหวัดเลย",
       icon: "building",
+      tone: "green",
       role: "นักศึกษาฝึกงานแผนก IT · วิทยาลัยเทคนิคเลย",
       year: "2025–2026",
       site: "InternPro — ระบบจัดการและบันทึกการฝึกงาน",
@@ -364,6 +369,7 @@ window.SITE = {
       level: "ปวช.3",
       org: "โรงพยาบาลเลย",
       icon: "hospital",
+      tone: "blue",
       role: "นักศึกษาฝึกงาน · วิทยาลัยเทคนิคเลย",
       year: "ปวช.3",
       site: "เว็บบันทึกการฝึกงานบน Google Sites",
