@@ -63,13 +63,13 @@ window.SITE = {
     {
       group: "ซอฟต์แวร์",
       icon: "code",
-      tone: "green",
+      tone: "purple",
       items: ["Front-End", "Back-End", "OOP", "Mobile", "DevOps"],
     },
     {
       group: "ข้อมูลและ AI",
       icon: "spark",
-      tone: "blue",
+      tone: "purple",
       items: ["SQL", "Big Data", "วิเคราะห์ข้อมูล", "Prompt Engineering"],
     },
     {
@@ -81,7 +81,7 @@ window.SITE = {
     {
       group: "วิชาชีพ",
       icon: "shield",
-      tone: "orange",
+      tone: "purple",
       items: ["PDPA", "กฎหมายไอที", "ภาษาอังกฤษ", "Helpdesk"],
     },
   ],
@@ -377,7 +377,7 @@ window.SITE = {
       logo: "assets/orgs/loei-hospital.png",
       logoDark: true,
       icon: "hospital",
-      tone: "blue",
+      tone: "green",
       role: "นักศึกษาฝึกงาน · วิทยาลัยเทคนิคเลย",
       year: "ปวช.3",
       site: "เว็บบันทึกการฝึกงานบน Google Sites",

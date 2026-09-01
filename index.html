@@ -13,7 +13,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/styles.css?v=20260901h" />
+    <link rel="stylesheet" href="css/styles.css?v=20260901i" />
   </head>
   <body>
     <header class="site-header">
@@ -28,26 +28,30 @@
     </header>
 
     <main id="top">
-      <section class="hero">
-        <figure class="portrait">
-          <img id="hero-photo" alt="พัชรพล ไวโสภา" />
-        </figure>
-        <div class="hero-copy">
-          <p class="kicker" id="hero-kicker"></p>
+      <section class="profile">
+        <div class="cover">
+          <img id="cover-photo" alt="" />
+        </div>
+        <div class="avatar-wrap">
+          <img id="hero-photo" class="avatar" alt="พัชรพล ไวโสภา" />
+        </div>
+        <div class="profile-body">
           <h1>
             <span id="hero-name-th"></span>
             <small id="hero-name-en">Patcharapon Waisopa</small>
           </h1>
+          <p class="profile-counts" id="hero-counts"></p>
           <p class="role" id="hero-role"></p>
           <p class="headline" id="hero-headline"></p>
-          <div id="hero-socials" class="icon-row"></div>
-          <p class="location" id="hero-location"></p>
+          <ul class="profile-facts" id="hero-facts"></ul>
+          <div class="profile-actions" id="hero-actions"></div>
+          <nav class="profile-tabs" id="profile-tabs"></nav>
         </div>
       </section>
 
       <section class="dash-panel">
         <div class="dash-panel-head">
-          <div class="dash-icon tone-orange" aria-hidden="true">
+          <div class="dash-icon tone-blue" aria-hidden="true">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 21a9 9 0 1 1 9-9"/>
               <path d="M12 12l5-3"/>
@@ -62,7 +66,7 @@
         <div id="stats" class="stats"></div>
       </section>
 
-      <section id="internships" class="section">
+      <section id="internships" class="section section-intern">
         <div class="section-head">
           <p class="kicker">ฝึกงาน</p>
           <h2>ประสบการณ์ฝึกงาน</h2>
@@ -70,7 +74,7 @@
         <div id="intern-grid" class="intern-grid"></div>
       </section>
 
-      <section id="skills" class="section">
+      <section id="skills" class="section section-skill">
         <div class="section-head">
           <p class="kicker">ทักษะ</p>
           <h2>ความสามารถหลัก</h2>
@@ -78,7 +82,7 @@
         <div id="skills-grid" class="skills-grid"></div>
       </section>
 
-      <section id="certificates" class="section">
+      <section id="certificates" class="section section-cert">
         <div class="section-head">
           <p class="kicker">เกียรติบัตร</p>
           <h2>TDGA / DGA</h2>
@@ -86,7 +90,7 @@
         <div id="cert-grid" class="cert-grid"></div>
       </section>
 
-      <section id="contact" class="section contact">
+      <section id="contact" class="section contact section-contact">
         <p class="kicker">ติดต่อ</p>
         <h2 id="contact-title"></h2>
         <div id="contact-cards" class="contact-cards"></div>
@@ -111,7 +115,7 @@
       <button id="lb-next" class="lb-nav next" type="button" aria-label="ใบถัดไป">›</button>
     </div>
 
-    <script src="js/content.js?v=20260901h"></script>
-    <script src="js/app.js?v=20260901h"></script>
+    <script src="js/content.js?v=20260901i"></script>
+    <script src="js/app.js?v=20260901i"></script>
   </body>
 </html>
