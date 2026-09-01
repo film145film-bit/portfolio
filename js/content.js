@@ -36,12 +36,9 @@ window.SITE = {
   },
 
   nav: [
-    { href: "#about", label: "เกี่ยวกับ" },
     { href: "#internships", label: "ฝึกงาน" },
     { href: "#skills", label: "ทักษะ" },
-    { href: "#courses", label: "รายวิชา" },
     { href: "#certificates", label: "เกียรติบัตร" },
-    { href: "#projects", label: "ผลงาน" },
     { href: "#contact", label: "ติดต่อ" },
   ],
 
@@ -56,28 +53,32 @@ window.SITE = {
   },
 
   stats: [
-    { value: "2", label: "แห่งฝึกงาน" },
-    { value: "37", label: "รายวิชาเรียน" },
-    { value: "6", label: "เกียรติบัตร TDGA" },
-    { value: "Full-stack", label: "ซอฟต์แวร์ + ระบบ" },
+    { value: "2", label: "แห่งฝึกงาน", icon: "briefcase" },
+    { value: "6", label: "เกียรติบัตร", icon: "award" },
+    { value: "4", label: "กลุ่มทักษะ", icon: "code" },
+    { value: "IT", label: "สายงาน", icon: "cpu" },
   ],
 
   skills: [
     {
-      group: "Software",
-      items: ["Front-End", "Back-End", "OOP / OOAD", "Mobile & Hybrid", "UI Design", "DevOps"],
+      group: "ซอฟต์แวร์",
+      icon: "code",
+      items: ["Front-End", "Back-End", "OOP", "Mobile", "DevOps"],
     },
     {
-      group: "Data & AI",
-      items: ["Database / SQL", "Big Data", "Data analysis", "Object detection", "Prompt Engineering", "AI Governance"],
+      group: "ข้อมูลและ AI",
+      icon: "spark",
+      items: ["SQL", "Big Data", "วิเคราะห์ข้อมูล", "Prompt Engineering"],
     },
     {
-      group: "Infrastructure",
-      items: ["Network", "Server OS", "IoT", "Hardware maintenance", "IT support", "Electronics basics"],
+      group: "ระบบ",
+      icon: "server",
+      items: ["เครือข่าย", "เซิร์ฟเวอร์", "IoT", "IT Support"],
     },
     {
-      group: "Professional",
-      items: ["IT Law / PDPA", "Technical English", "QA / Quality", "Helpdesk", "Entrepreneurship", "Teamwork"],
+      group: "วิชาชีพ",
+      icon: "shield",
+      items: ["PDPA", "กฎหมายไอที", "ภาษาอังกฤษ", "Helpdesk"],
     },
   ],
 
@@ -347,11 +348,11 @@ window.SITE = {
     {
       level: "ปวส.1",
       org: "สำนักงานสาธารณสุขจังหวัดเลย",
+      icon: "building",
       role: "นักศึกษาฝึกงานแผนก IT · วิทยาลัยเทคนิคเลย",
       year: "2025–2026",
       site: "InternPro — ระบบจัดการและบันทึกการฝึกงาน",
-      summary:
-        "สร้างเว็บ InternPro สำหรับลงเวลา Check In/Out, บันทึกงานรายวัน, อัปโหลดผลงาน และดูแดชบอร์ดสรุปชั่วโมงฝึกงาน ใช้ HTML CSS JavaScript และ Firebase แล้วนำขึ้น GitHub Pages",
+      summary: "ทำเว็บ InternPro ลงเวลา บันทึกงานรายวัน อัปโหลดผลงาน และแดชบอร์ด",
       tags: ["HTML", "CSS", "JavaScript", "Firebase", "GitHub Pages"],
       image: "assets/projects/internpro.png",
       links: {
@@ -362,11 +363,11 @@ window.SITE = {
     {
       level: "ปวช.3",
       org: "โรงพยาบาลเลย",
+      icon: "hospital",
       role: "นักศึกษาฝึกงาน · วิทยาลัยเทคนิคเลย",
       year: "ปวช.3",
       site: "เว็บบันทึกการฝึกงานบน Google Sites",
-      summary:
-        "จัดทำเว็บบันทึกการฝึกงานระดับ ปวช.3 ที่โรงพยาบาลเลย ด้วย Google Sites เพื่อรวบรวมประวัติการฝึก งานที่ได้รับมอบหมาย และหลักฐานการปฏิบัติงานให้อาจารย์และสถานประกอบการดูได้",
+      summary: "ทำเว็บบันทึกการฝึกงานด้วย Google Sites สำหรับโรงพยาบาลเลย",
       tags: ["Google Sites", "Documentation", "Hospital IT"],
       image: "",
       links: {
@@ -504,7 +505,7 @@ window.SITE = {
   ],
 
   contact: {
-    title: "พร้อมให้ติดต่อเรื่องงานไอทีและการฝึกงาน",
-    note: "ติดต่อได้ทางอีเมล LINE หรือโทรศัพท์",
+    title: "ช่องทางติดต่อ",
+    note: "",
   },
 };

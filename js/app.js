@@ -1,35 +1,48 @@
 (() => {
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
-
   const SITE = window.SITE;
   if (!SITE) return;
 
-  const { profile, nav, about, stats, skills, courses = [], internships = [], certificates, projects, contact } = SITE;
+  const { profile, nav, stats, skills, internships = [], certificates, contact } = SITE;
+
+  const svg = (d) =>
+    `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+
+  const ICONS = {
+    mail: svg('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'),
+    phone: svg('<path d="M6 3h4l2 5-3 2a12 12 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-3z"/>'),
+    chat: svg('<path d="M4 5h16v11H8l-4 3z"/>'),
+    github: svg('<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.1-1.5 6.1-6.6A5 5 0 0 0 16 4.8 4.6 4.6 0 0 0 15.9 1S14.7.7 12 2.5a15 15 0 0 0-6 0C3.3.7 2.1 1 2.1 1A4.6 4.6 0 0 0 2 4.8 5 5 0 0 0 .5 8.9c0 5.1 3.1 6.3 6.1 6.6a3.4 3.4 0 0 0-.9 2.6V22"/>'),
+    pin: svg('<path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.2"/>'),
+    briefcase: svg('<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/>'),
+    award: svg('<circle cx="12" cy="9" r="6"/><path d="M8.2 14.4 7 22l5-2 5 2-1.2-7.6"/>'),
+    code: svg('<path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 4l-4 16"/>'),
+    cpu: svg('<rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/>'),
+    spark: svg('<path d="M12 3v4M12 17v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M3 12h4M17 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/>'),
+    server: svg('<rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/><path d="M7 7h.01M7 17h.01"/>'),
+    shield: svg('<path d="M12 3 5 6v6c0 5 3.4 7.8 7 9 3.6-1.2 7-4 7-9V6z"/>'),
+    building: svg('<path d="M4 21V5a1 1 0 0 1 1-1h9v17M14 9h6v12M8 8h2M8 12h2M8 16h2M17 12h2M17 16h2M3 21h18"/>'),
+    hospital: svg('<path d="M3 21h18M6 21V8l6-4 6 4v13M10 12h4M12 10v4"/>'),
+    link: svg('<path d="M10 13a5 5 0 0 0 7.5.1l1.4-1.4a5 5 0 0 0-7.1-7.1L10.5 6"/><path d="M14 11a5 5 0 0 0-7.5-.1L5.1 12.3a5 5 0 0 0 7.1 7.1L13.5 18"/>'),
+  };
+
+  const icon = (name) => ICONS[name] || "";
 
   document.title = `${profile.nameEn} · ${profile.role}`;
-  const metaDesc = document.querySelector('meta[name="description"]');
-  if (metaDesc) metaDesc.setAttribute("content", profile.headline);
-
   $("#brand-name").textContent = profile.nameTh;
   const photo = profile.photo || "assets/profile.jpg";
-  const heroPhoto = $("#hero-photo");
+  $("#hero-photo").src = photo;
+  $("#hero-photo").alt = profile.nameTh;
   const brandPhoto = $("#brand-photo");
-  if (heroPhoto) {
-    heroPhoto.src = photo;
-    heroPhoto.alt = profile.nameTh;
-  }
-  if (brandPhoto) {
-    brandPhoto.src = photo;
-    brandPhoto.alt = "";
-    brandPhoto.hidden = false;
-  }
+  brandPhoto.src = photo;
+  brandPhoto.hidden = false;
   $("#hero-kicker").textContent = profile.availability;
   $("#hero-name-th").textContent = profile.nameTh;
   $("#hero-name-en").textContent = "Patcharapon Waisopa";
   $("#hero-role").textContent = profile.role;
   $("#hero-headline").textContent = profile.headline;
-  $("#hero-location").textContent = profile.location;
+  $("#hero-location").innerHTML = `${icon("pin")} <span>${profile.location}</span>`;
   $("#year").textContent = new Date().getFullYear();
   $("#footer-name").textContent = profile.nameTh;
 
@@ -45,293 +58,116 @@
   };
 
   const channels = [
-    profile.email && {
-      href: `mailto:${profile.email}`,
-      kind: "Email",
-      value: profile.email,
-      label: "Email",
-    },
-    profile.line && {
-      href: `https://line.me/ti/p/~${encodeURIComponent(profile.line)}`,
-      kind: "LINE ID",
-      value: profile.line,
-      label: "LINE",
-    },
-    profile.phone && {
-      href: `tel:${String(profile.phone).replace(/\D/g, "")}`,
-      kind: "โทรศัพท์",
-      value: formatPhone(profile.phone),
-      label: "โทร",
-    },
-    profile.github && {
-      href: profile.github,
-      kind: "GitHub",
-      value: profile.github.replace(/^https?:\/\/(www\.)?github\.com\//, ""),
-      label: "GitHub",
-    },
-    profile.linkedin && {
-      href: profile.linkedin,
-      kind: "LinkedIn",
-      value: "LinkedIn",
-      label: "LinkedIn",
-    },
+    profile.email && { href: `mailto:${profile.email}`, kind: "Email", value: profile.email, icon: "mail" },
+    profile.line && { href: `https://line.me/ti/p/~${encodeURIComponent(profile.line)}`, kind: "LINE", value: profile.line, icon: "chat" },
+    profile.phone && { href: `tel:${String(profile.phone).replace(/\D/g, "")}`, kind: "โทร", value: formatPhone(profile.phone), icon: "phone" },
+    profile.github && { href: profile.github, kind: "GitHub", value: "film145film-bit", icon: "github" },
   ].filter(Boolean);
 
-  const socials = channels.map((c) => ({ href: c.href, label: c.label }));
+  const isExternal = (href) => !href.startsWith("mailto:") && !href.startsWith("tel:");
 
-  const socialHtml = (className = "socials") =>
-    socials.length
-      ? `<div class="${className}">${socials
-          .map((s) => {
-            const external = !s.href.startsWith("mailto:") && !s.href.startsWith("tel:");
-            return `<a href="${s.href}" target="${external ? "_blank" : "_self"}" rel="noreferrer">${s.label}</a>`;
-          })
-          .join("")}</div>`
-      : "";
+  $("#hero-socials").innerHTML = channels
+    .map((c) => `<a class="icon-btn" href="${c.href}" ${isExternal(c.href) ? 'target="_blank" rel="noreferrer"' : ""}>${icon(c.icon)} ${c.kind}</a>`)
+    .join("");
 
-  $("#hero-socials").innerHTML = socialHtml();
-  $("#contact-socials").innerHTML = "";
   $("#contact-cards").innerHTML = channels
-    .map((c) => {
-      const external = !c.href.startsWith("mailto:") && !c.href.startsWith("tel:");
-      return `<a class="contact-card" href="${c.href}" target="${external ? "_blank" : "_self"}" rel="noreferrer">
-        <span>${c.kind}</span>
+    .map(
+      (c) => `<a class="contact-card" href="${c.href}" ${isExternal(c.href) ? 'target="_blank" rel="noreferrer"' : ""}>
+        <span>${icon(c.icon)} ${c.kind}</span>
         <strong>${c.value}</strong>
-      </a>`;
-    })
+      </a>`
+    )
     .join("");
 
   $("#stats").innerHTML = stats
     .map(
       (s) => `<article class="stat">
+        ${icon(s.icon)}
         <strong>${s.value}</strong>
         <span>${s.label}</span>
       </article>`
     )
     .join("");
 
-  $("#about-kicker").textContent = about.kicker;
-  $("#about-title").textContent = about.title;
-  $("#about-body").innerHTML = about.body.map((p) => `<p>${p}</p>`).join("");
-
   $("#skills-grid").innerHTML = skills
     .map(
-      (group) => `<article class="skill-card reveal">
-        <h3>${group.group}</h3>
+      (group) => `<article class="skill-card">
+        <h3>${icon(group.icon)} ${group.group}</h3>
         <ul>${group.items.map((item) => `<li>${item}</li>`).join("")}</ul>
       </article>`
     )
     .join("");
 
-  const courseCategories = ["ทั้งหมด", ...new Set(courses.map((c) => c.category))];
-  let activeCourseCategory = "ทั้งหมด";
-
-  const renderCourseFilters = () => {
-    $("#course-filters").innerHTML = courseCategories
-      .map(
-        (cat) =>
-          `<button class="chip ${cat === activeCourseCategory ? "is-active" : ""}" data-course-cat="${cat}" type="button">${cat}</button>`
-      )
-      .join("");
-  };
-
-  const renderCourses = () => {
-    const list =
-      activeCourseCategory === "ทั้งหมด"
-        ? courses
-        : courses.filter((c) => c.category === activeCourseCategory);
-
-    $("#course-grid").innerHTML = list
-      .map(
-        (c, i) => `<article class="course-card reveal" style="--d:${i * 40}ms">
-          <span class="course-cat">${c.category}</span>
-          <h3>${c.title}</h3>
-          <p class="course-en">${c.titleEn}</p>
-          <p class="course-gain-label">เมื่อเรียนจบจะได้</p>
-          <p class="course-outcome">${c.outcome}</p>
-          <ul class="tags">${(c.gains || []).map((g) => `<li>${g}</li>`).join("")}</ul>
-        </article>`
-      )
-      .join("");
-
-    observeReveals();
-  };
-
-  renderCourseFilters();
-  renderCourses();
-
-  $("#course-filters").addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-course-cat]");
-    if (!btn) return;
-    activeCourseCategory = btn.dataset.courseCat;
-    renderCourseFilters();
-    renderCourses();
-  });
-
-  const categories = ["ทั้งหมด", ...new Set(certificates.map((c) => c.category))];
-  let activeCategory = "ทั้งหมด";
-
-  const renderFilters = () => {
-    $("#cert-filters").innerHTML = categories
-      .map(
-        (cat) =>
-          `<button class="chip ${cat === activeCategory ? "is-active" : ""}" data-cat="${cat}" type="button">${cat}</button>`
-      )
-      .join("");
-  };
-
-  const renderCertificates = () => {
-    const list =
-      activeCategory === "ทั้งหมด"
-        ? certificates
-        : certificates.filter((c) => c.category === activeCategory);
-
-    $("#cert-grid").innerHTML = list
-      .map(
-        (c, i) => `<button class="cert-card reveal" data-id="${c.id}" type="button" style="--d:${i * 60}ms">
-          <span class="cert-frame">
-            <img src="${c.image}" alt="${c.title}" loading="lazy">
-          </span>
-          <span class="cert-meta">
-            <span class="cert-cat">${c.category}</span>
-            <strong>${c.title}</strong>
-            <em>${c.titleEn}</em>
-            <span class="cert-foot">
-              <span>${c.issuer}</span>
-              <span>${c.date} · ${c.hours}</span>
-            </span>
-          </span>
-        </button>`
-      )
-      .join("");
-
-    observeReveals();
-  };
-
-  renderFilters();
-  renderCertificates();
-
-  $("#cert-filters").addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-cat]");
-    if (!btn) return;
-    activeCategory = btn.dataset.cat;
-    renderFilters();
-    renderCertificates();
-  });
-
-  const internLink = (href, label) => {
-    if (!href) return "";
-    const external = href !== "#";
-    return `<a href="${href}" ${external ? 'target="_blank" rel="noreferrer"' : ""}>${label}</a>`;
-  };
-
   $("#intern-grid").innerHTML = internships
     .map((item) => {
-      const media = item.image
-        ? `<img src="${item.image}" alt="${item.org}">`
-        : `<div class="project-fallback"><span>/${item.level}</span></div>`;
-      return `<article class="intern-card reveal">
-        <div class="project-media">${media}</div>
-        <div class="project-body">
+      const live = item.links?.live
+        ? `<a href="${item.links.live}" target="_blank" rel="noreferrer">${icon("link")} เปิดเว็บ</a>`
+        : "";
+      const gh = item.links?.github
+        ? `<a href="${item.links.github}" target="_blank" rel="noreferrer">${icon("github")} GitHub</a>`
+        : "";
+      return `<article class="intern-card">
+        <div class="intern-icon">${icon(item.icon || "briefcase")}</div>
+        <div>
           <div class="intern-badges">
             <span class="course-cat">${item.level}</span>
             <span class="intern-year">${item.year}</span>
           </div>
           <h3>${item.org}</h3>
           <p class="course-en">${item.role}</p>
-          <p class="intern-site">${item.site}</p>
           <p>${item.summary}</p>
-          <ul class="tags">${(item.tags || []).map((t) => `<li>${t}</li>`).join("")}</ul>
-          <div class="project-links">${internLink(item.links?.live, "เปิดเว็บฝึกงาน")}${internLink(item.links?.github, "GitHub")}</div>
+          <div class="project-links">${live}${gh}</div>
         </div>
       </article>`;
     })
     .join("");
 
-  const renderProjects = () => {
-    if (!projects.length) {
-      $("#project-grid").innerHTML = `<div class="empty-card">
-        <p>ยังไม่มีผลงานในไฟล์คอนเทนต์</p>
-        <p>เปิด <code>js/content.js</code> แล้วเพิ่ม object ในอาร์เรย์ <code>projects</code></p>
-      </div>`;
-      return;
-    }
-
-    $("#project-grid").innerHTML = projects
-      .map((p) => {
-        const live = p.links?.live
-          ? `<a href="${p.links.live}" ${p.links.live === "#" ? "" : 'target="_blank" rel="noreferrer"'}>Live</a>`
-          : "";
-        const gh = p.links?.github
-          ? `<a href="${p.links.github}" target="_blank" rel="noreferrer">GitHub</a>`
-          : "";
-        const media = p.image
-          ? `<img src="${p.image}" alt="${p.title}">`
-          : `<div class="project-fallback"><span>/${p.title.split(" ")[0].toLowerCase()}</span></div>`;
-
-        return `<article class="project-card reveal">
-          <div class="project-media">${media}</div>
-          <div class="project-body">
-            <div class="project-top">
-              <h3>${p.title}</h3>
-              <span>${p.year}</span>
-            </div>
-            <p>${p.summary}</p>
-            <ul class="tags">${(p.tags || []).map((t) => `<li>${t}</li>`).join("")}</ul>
-            <div class="project-links">${live}${gh}</div>
-          </div>
-        </article>`;
-      })
-      .join("");
-  };
-
-  renderProjects();
+  $("#cert-grid").innerHTML = certificates
+    .map(
+      (c) => `<button class="cert-card" data-id="${c.id}" type="button">
+        <span class="cert-frame">
+          <img src="${c.image}" alt="${c.title}" loading="lazy">
+        </span>
+        <span class="cert-meta">
+          <span class="cert-cat">${icon("award")} ${c.category}</span>
+          <strong>${c.title}</strong>
+        </span>
+      </button>`
+    )
+    .join("");
 
   $("#contact-title").textContent = contact.title;
-  $("#contact-note").textContent = socials.length
-    ? "เลือกช่องทางที่สะดวกได้เลย"
-    : contact.note;
 
   const lightbox = $("#lightbox");
-  const lbImage = $("#lb-image");
-  const lbTitle = $("#lb-title");
-  const lbMeta = $("#lb-meta");
-  const lbPdf = $("#lb-pdf");
   let lbIndex = 0;
-
+  const paintLightbox = () => {
+    const c = certificates[lbIndex];
+    $("#lb-image").src = c.fullImage || c.image;
+    $("#lb-title").textContent = c.title;
+    $("#lb-meta").textContent = `${c.issuer} · ${c.date}`;
+    if (c.pdf) {
+      $("#lb-pdf").href = c.pdf;
+      $("#lb-pdf").hidden = false;
+    } else {
+      $("#lb-pdf").hidden = true;
+    }
+  };
   const openLightbox = (id) => {
     lbIndex = certificates.findIndex((c) => c.id === id);
     if (lbIndex < 0) return;
     paintLightbox();
     lightbox.hidden = false;
     document.body.classList.add("no-scroll");
-    $("#lb-close").focus();
   };
-
   const closeLightbox = () => {
     lightbox.hidden = true;
     document.body.classList.remove("no-scroll");
-  };
-
-  const paintLightbox = () => {
-    const c = certificates[lbIndex];
-    lbImage.src = c.fullImage || c.image;
-    lbImage.alt = c.title;
-    lbTitle.textContent = c.title;
-    lbMeta.textContent = `${c.issuer} · ${c.date} · ${c.hours}`;
-    if (c.pdf) {
-      lbPdf.href = c.pdf;
-      lbPdf.hidden = false;
-    } else {
-      lbPdf.hidden = true;
-    }
   };
 
   $("#cert-grid").addEventListener("click", (e) => {
     const card = e.target.closest("[data-id]");
     if (card) openLightbox(card.dataset.id);
   });
-
   $("#lb-close").addEventListener("click", closeLightbox);
   $("#lb-prev").addEventListener("click", () => {
     lbIndex = (lbIndex - 1 + certificates.length) % certificates.length;
@@ -359,26 +195,5 @@
   navEl.addEventListener("click", () => {
     document.body.classList.remove("nav-open");
     toggle.setAttribute("aria-expanded", "false");
-  });
-
-  function observeReveals() {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-in");
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.16 }
-    );
-    $$(".reveal").forEach((el) => io.observe(el));
-  }
-
-  observeReveals();
-  $$(".hero-copy > *, .hero-visual, .stat").forEach((el, i) => {
-    el.style.animationDelay = `${i * 70}ms`;
-    el.classList.add("boot");
   });
 })();

@@ -118,7 +118,7 @@ main {
   grid-template-columns: 280px 1fr;
   gap: 48px;
   align-items: center;
-  padding: 56px 0 28px;
+  padding: 40px 0 16px;
 }
 
 .portrait {
@@ -176,10 +176,37 @@ h1 small {
   max-width: 38rem;
 }
 
-.hero-actions {
+.icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.icon-row {
   display: flex;
-  gap: 10px;
-  margin: 24px 0 14px;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+.icon-btn:hover {
+  border-color: var(--ink);
+}
+
+.hero-actions {
+  display: none;
 }
 
 .btn {
@@ -214,6 +241,9 @@ h1 small {
 }
 
 .location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin-top: 14px;
   color: var(--muted);
   font-size: 0.9rem;
@@ -225,12 +255,17 @@ h1 small {
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
-  margin: 12px 0 56px;
+  margin: 8px 0 32px;
 }
 
 .stat {
   padding: 16px;
   background: var(--paper);
+}
+
+.stat .icon {
+  color: var(--gold);
+  margin-bottom: 6px;
 }
 
 .stat strong {
@@ -244,7 +279,7 @@ h1 small {
 }
 
 .section {
-  padding: 8px 0 56px;
+  padding: 4px 0 40px;
   border-top: 1px solid var(--line);
 }
 
@@ -329,9 +364,11 @@ h2 {
   font-size: 0.88rem;
 }
 
-.course-cat,
 .cert-cat,
 .contact-card span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -356,19 +393,27 @@ h2 {
   grid-template-columns: 1fr 1fr;
 }
 
-.intern-card,
-.project-card {
-  overflow: hidden;
+.intern-card {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 14px;
+  padding: 16px 18px;
+  align-items: start;
 }
 
-.intern-card .project-media,
-.project-media {
-  display: none;
+.intern-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  color: var(--gold);
+  background: var(--bg);
 }
 
-.intern-card .project-body,
-.project-card {
-  padding: 18px;
+.intern-icon .icon {
+  width: 22px;
+  height: 22px;
 }
 
 .intern-badges,
@@ -379,11 +424,11 @@ h2 {
   margin-bottom: 6px;
 }
 
-.intern-site,
-.project-links a {
+.course-cat {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--gold);
-  font-weight: 600;
-  margin: 8px 0 6px;
 }
 
 .skill-card {
@@ -391,6 +436,9 @@ h2 {
 }
 
 .skill-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin-bottom: 8px;
   color: var(--gold);
   font-size: 0.95rem;
@@ -398,11 +446,15 @@ h2 {
 
 .skill-card ul {
   list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .skill-card li {
-  padding: 6px 0;
-  border-top: 1px solid var(--line);
+  border: 1px solid var(--line);
+  padding: 3px 8px;
+  font-size: 0.85rem;
 }
 
 .chips {
@@ -444,7 +496,7 @@ h2 {
 
 .cert-frame {
   display: block;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 5 / 4;
   overflow: hidden;
   background: #eeeae2;
 }
@@ -495,7 +547,17 @@ h2 {
 
 .project-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 14px;
+  margin-top: 10px;
+}
+
+.project-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gold);
+  font-weight: 600;
 }
 
 .contact {
