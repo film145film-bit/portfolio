@@ -26,7 +26,7 @@
   }
   $("#hero-kicker").textContent = profile.availability;
   $("#hero-name-th").textContent = profile.nameTh;
-  $("#hero-name-en").textContent = profile.nameEn;
+  $("#hero-name-en").textContent = "Patcharapon Waisopa";
   $("#hero-role").textContent = profile.role;
   $("#hero-headline").textContent = profile.headline;
   $("#hero-location").textContent = profile.location;
